@@ -36,7 +36,6 @@ enum FormState {
 export default function RateYourExperience() {
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const [feedback, setFeedback] = useState("");
   const [formState, setFormState] = useState(FormState.IDLE);
 
   const ref = useRef(null);
@@ -45,8 +44,8 @@ export default function RateYourExperience() {
   useEffect(() => {
     const handleKeyDown = (event: {
       key: string;
-      ctrlKey: any;
-      metaKey: any;
+      ctrlKey: boolean;
+      metaKey: boolean;
     }) => {
       if (event.key === "Escape") {
         closeFeedback();
@@ -72,9 +71,13 @@ export default function RateYourExperience() {
     }, 300);
   }
 
+  function setFeedback() {
+    // Not implemented because we are not using feedback for any purpose.
+  }
+
   function closeFeedback() {
     setOpen(false);
-    setFeedback("");
+    setFeedback();
     setSelectedOption("");
     setFormState(FormState.IDLE);
   }
@@ -150,7 +153,7 @@ export default function RateYourExperience() {
                         layout
                         onClick={() => {
                           setSelectedOption(option.id);
-                          setFeedback("");
+                          setFeedback();
                         }}
                       >
                         {option.title}
@@ -165,8 +168,8 @@ export default function RateYourExperience() {
                     >
                       <Textarea
                         placeholder="Tell us more (optional)"
-                        onChange={($event) => {
-                          setFeedback($event.target.value);
+                        onChange={() => {
+                          setFeedback();
                         }}
                       ></Textarea>
                       <Button
