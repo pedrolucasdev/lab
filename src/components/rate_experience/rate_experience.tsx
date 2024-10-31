@@ -2,10 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { motion, AnimatePresence, delay } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import useMeasure from "react-use-measure";
 import Image from "next/image";
 import { useOnClickOutside } from "usehooks-ts";
 
@@ -112,12 +111,14 @@ export default function RateYourExperience() {
       <AnimatePresence>
         {open ? (
           <motion.div
-            className="flex rounded-lg w-[380px] p-5 border absolute z-20 bg-white overflow-hidden flex-col"
+            className="flex rounded-lg w-[300px]  md:w-[380px] p-5 border absolute z-20 bg-white overflow-hidden flex-col"
             layoutId="wrapper"
             ref={ref}
           >
             <motion.div className="flex w-full mb-5">
-              <motion.span layoutId="title">Rate your experience</motion.span>
+              <motion.span layoutId="title" className="text-sm">
+                Rate your experience
+              </motion.span>
               <motion.span
                 layout
                 className="ml-auto flex cursor-pointer"
@@ -126,7 +127,7 @@ export default function RateYourExperience() {
                 }}
                 key="modal-close"
               >
-                <X color="#cbcbcb" size={24} />
+                <X color="#cbcbcb" className="w-4 h-4 md:w-6 md:h-6" />
               </motion.span>
             </motion.div>
             <AnimatePresence mode="popLayout">
@@ -140,7 +141,7 @@ export default function RateYourExperience() {
                   <div className="flex w-full justify-between">
                     {options.map((option) => (
                       <motion.div
-                        className={`w-[100px] flex justify-center items-center h-[36px] rounded-sm border border-gray cursor-pointer ${
+                        className={`w-[80px] md:w-[100px] text-[13px] md:text-sm flex justify-center items-center h-[36px] rounded-sm border border-gray cursor-pointer ${
                           selectedOption == option.id
                             ? "border border-gray-800"
                             : ""
@@ -261,7 +262,7 @@ export default function RateYourExperience() {
                       <motion.div
                         className="flex flex-col w-full items-center"
                         initial={{ y: "150%", opacity: 0, filter: "blur(4px)" }}
-                        animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                        animate={{ y: 0, opacity: 1, filter: "initial" }}
                         exit={{
                           y: "150%",
                           opacity: 0,

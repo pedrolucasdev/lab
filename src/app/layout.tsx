@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased light`}>
-        <div className="flex flex-col px-52 py-20">
+        <div className="flex flex-col p-6 md:px-16 md:py-10 lg:px-52 lg:py-20">
           <h1 className="text-blue-600">Playground</h1>
           <h2>A space where I work on implementing cool animations</h2>
           {children}
